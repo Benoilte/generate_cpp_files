@@ -1,22 +1,8 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    src_inc_in_root.mk                                 :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: bebrandt <bebrandt@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/29 10:08:14 by bebrandt          #+#    #+#              #
-#    Updated: 2024/11/29 14:58:38 by bebrandt         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-
-
-NAME 			=	# define
+NAME 			=	placeholder_name
 
 OBJ_DIR			=	obj/
 DEP_DIR			=	dep/
-SRC_FILES		=	#define
+SRC_FILES		=	placeholder_src_file
 
 INC				=	.
 

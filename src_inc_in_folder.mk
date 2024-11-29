@@ -1,22 +1,10 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    src_inc_in_folder.mk                               :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/29 10:08:14 by bebrandt          #+#    #+#              #
-#    Updated: 2024/11/29 16:08:33 by bebrandt         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME 			=	# to_define
+NAME 			=	placeholder_name
 
 SRC_DIR			=	src/
 OBJ_DIR			=	obj/
 DEP_DIR			=	dep/
 
-SRC_FILES		=	#src_file
+SRC_FILES		=	placeholder_src_file
 
 INC				=	inc/.
 
