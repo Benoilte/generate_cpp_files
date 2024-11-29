@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    src_inc_in_folder.mk                               :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bebrandt <bebrandt@student.42.fr>          +#+  +:+       +#+         #
+#    By: bebrandt <benoit.brandt@proton.me>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/29 10:08:14 by bebrandt          #+#    #+#              #
-#    Updated: 2024/11/29 14:57:06 by bebrandt         ###   ########.fr        #
+#    Updated: 2024/11/29 16:08:33 by bebrandt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ $(NAME):		$(OBJS)
 				@printf "$(CLEAR_LINE)"
 				@echo "\r$(GREEN)Successfully created executable: $(NAME) $(DEF_COLOR)"
 
-$(OBJ_DIR)%.o:	%.cpp
+$(OBJ_DIR)%.o:	$(SRC_DIR)%.cpp
 				@mkdir -p $(dir $@)
 				@mkdir -p $(subst $(OBJ_DIR), $(DEP_DIR), $(dir $@))
 				@$(eval COMPILED_COUNT=$(shell echo $$(($(COMPILED_COUNT) + 1))))
