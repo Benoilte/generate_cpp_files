@@ -1,68 +1,52 @@
 #!/bin/bash
 
-
 # Check if number of argument is one or two
 
 if [ $# -lt 1 ]; then
   echo 1>&2 "$0: not enough arguments - Please insert the name of the Class"
   exit 2
-elif [ $# -gt 2 ]; then
-  echo 1>&2 "$0: too many arguments - Only insert the name of the Class"
-  exit 2
 fi
 
-# If argument is equal to 2 check the value of the first one
-# Set variable according if arg count is 1 or 2
-if [ $# -eq 2 ]
-	then
-		option=$1
-		if [[ $1 = "-i" ]]
-			then
-				incFolder="inc/"
-				srcFolder="src/"
-				mkdir -p $incFolder
-				mkdir -p $srcFolder
-				class=$2
-				newHeaderFile=$incFolder$class.hpp
-				newSourceFile=$srcFolder$class.cpp
-			else
-				echo wrong first argument only '-i option exist'
-				exit 0
-		fi
-	else
-		class=$1
-		newHeaderFile=$class.hpp
-		newSourceFile=$class.cpp
+if [ $1 = "-i" ]; then
+	index=2
+	incFolder="inc/"
+	srcFolder="src/"
+	mkdir -p $incFolder
+	mkdir -p $srcFolder
+else
+	index=1
+	incFolder=""
+	srcFolder=""
 fi
 
-# Set variable in order create appropriate class
-templateClass="Template"
-capitalTemplateClass=${templateClass^^}
-capitalClass=${class^^}
-templateHeaderFile=~/generate_cpp_files/Template.hpp
-templateSourceFile=~/generate_cpp_files/Template.cpp
+for ((i = $index; i <= $#; i++ )); do
+	# Set variable in order create appropriate class
+	class="${!i}"
+	templateClass="Template"
+	capitalTemplateClass=${templateClass^^}
+	capitalClass=${class^^}
+	templateHeaderFile=~/generate_cpp_files/Template.hpp
+	templateSourceFile=~/generate_cpp_files/Template.cpp
+	newSourceFile=$srcFolder$class.cpp
+	newHeaderFile=$incFolder$class.hpp
 
-# Exit if class name already exist
-if test -f $newHeaderFile; then
-  echo "$newHeaderFile class already exist"
-  exit 1
-fi
+	# Exit if class name already exist
+	if test -f $newHeaderFile || test -f $newSourceFile; then
+		echo "$newHeaderFile or $newSourceFile class already exist"
+		exit 1
+	fi
 
-if test -f $newSourceFile; then
-  echo "$newSourceFile class already exist"
-  exit 1
-fi
-
-cp $templateHeaderFile $newHeaderFile
-cp $templateSourceFile $newSourceFile
+	cp $templateHeaderFile $newHeaderFile
+	cp $templateSourceFile $newSourceFile
 
 
-# replace "TEMPLATE" header guard by capitalized name of the class
-sed -i s/$capitalTemplateClass/$capitalClass/g $newHeaderFile
+	# replace "TEMPLATE" header guard by capitalized name of the class
+	sed -i s/$capitalTemplateClass/$capitalClass/g $newHeaderFile
 
-# replace "Template" word by the name of the class
-sed -i s/$templateClass/$class/g $newHeaderFile $newSourceFile
+	# replace "Template" word by the name of the class
+	sed -i s/$templateClass/$class/g $newHeaderFile $newSourceFile
 
-# Display Class creation
-echo "$newHeaderFile is created"
-echo "$newSourceFile is created"
+	# Display Class creation
+	echo "$newHeaderFile is created"
+	echo "$newSourceFile is created"
+done
