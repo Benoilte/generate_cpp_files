@@ -11,7 +11,7 @@ elif [ $# -gt 2 ]; then
   exit 2
 fi
 
-# If argument is equal to 2 check the value of the first one 
+# If argument is equal to 2 check the value of the first one
 # Set variable according if arg count is 1 or 2
 if [ $# -eq 2 ]
 	then
@@ -39,8 +39,8 @@ fi
 templateClass="Template"
 capitalTemplateClass=${templateClass^^}
 capitalClass=${class^^}
-templateHeaderFile=~/generate_cpp_class/Template.hpp
-templateSourceFile=~/generate_cpp_class/Template.cpp
+templateHeaderFile=~/generate_cpp_files/Template.hpp
+templateSourceFile=~/generate_cpp_files/Template.cpp
 
 # Exit if class name already exist
 if test -f $newHeaderFile; then
@@ -58,7 +58,7 @@ cp $templateSourceFile $newSourceFile
 
 
 # replace "TEMPLATE" header guard by capitalized name of the class
-sed -i s/$capitalTemplateClass/$capitalClass/g $newHeaderFile 
+sed -i s/$capitalTemplateClass/$capitalClass/g $newHeaderFile
 
 # replace "Template" word by the name of the class
 sed -i s/$templateClass/$class/g $newHeaderFile $newSourceFile
