@@ -9,7 +9,9 @@ newMain=$1.cpp
 index=2;
 
 if [ $# -gt 1 ] && [[ $1 = "-i" ]]; then
-	newMain=src/$2.cpp
+	srcFolder="src/"
+	mkdir -p $srcFolder
+	newMain=$srcFolder$2.cpp
 	index=3;
 fi
 
