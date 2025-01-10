@@ -8,20 +8,20 @@ class Template
 	public:
 
 		Template();
-		Template(int const n);
-		Template(const Template &src);
+		Template(int const t_n);
+		Template(const Template &t_src);
 		~Template();
 
-		Template	&operator=(const Template &rhs);
+		Template	&operator=(const Template &t_rhs);
 
 		int		getFoo(void) const;
 
 
 	private:
 	
-		int	_foo;
+		int	m_foo;
 };
 
-std::ostream	&operator<<(std::ostream &out, Template const &rhs);
+std::ostream	&operator<<(std::ostream &t_out, Template const &t_rhs);
 
 #endif

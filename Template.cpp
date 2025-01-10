@@ -5,14 +5,14 @@ Template::Template()
     /*Constructor*/
 }
 
-Template::Template(const Template &src)
+Template::Template(const Template &t_src)
 {
-	*this = src;
+	*this = t_src;
 
 	return ;
 }
 
-Template::Template(int const n) : _foo(n)
+Template::Template(int const t_n) : m_foo(t_n)
 {
 	
 }
@@ -22,22 +22,21 @@ Template::~Template()
 	/*Destructor*/
 }
 
-Template& Template::operator=(const Template &rhs)
+Template& Template::operator=(const Template &t_rhs)
 {
-	if (this != &rhs)
-		this->_foo = rhs.getFoo();
+	if (this != &t_rhs)
+		this->m_foo = t_rhs.getFoo();
 	
 	return *this;
-
 }
 
 int Template::getFoo(void) const
 {
-	return _foo;
+	return m_foo;
 }
 
-std::ostream& operator<<(std::ostream &out, Template const &rhs)
+std::ostream& operator<<(std::ostream &t_out, Template const &t_rhs)
 {
-	out << rhs.getFoo();
-	return out; 
+	t_out << t_rhs.getFoo();
+	return t_out; 
 }
