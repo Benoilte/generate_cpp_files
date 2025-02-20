@@ -49,8 +49,7 @@ fclean:			clean
 				@$(RM) $(NAME)
 				@echo "$(YELLOW)fclean complete $(DEF_COLOR)"
 
-re:				fclean
-				@$(MAKE) all
+re:				fclean all
 
 debug:			COMP_FLAGS += -g
 debug:			all
