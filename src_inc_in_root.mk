@@ -13,7 +13,7 @@ DEPS			=	$(addprefix $(DEP_DIR), $(addsuffix .d, $(SRC_FILES)))
 INC_PATHS		=	$(addprefix -I, $(INC))
 
 CC				=	c++
-COMP_FLAGS		=	-Wall -Wextra -Werror -O2
+COMP_FLAGS		=	-Wall -Wextra -Werror
 CPP_FLAGS		=	-std=c++98
 DFLAGS			:=	-MMD -MF
 DEP_FILE		=	$(DEP_DIR)$*.d
@@ -24,9 +24,6 @@ RED				=	\033[0;91m
 GREEN			=	\033[0;92m
 YELLOW			=	\033[0;93m
 CLEAR_LINE		=	\033[2K
-
-TOTAL_FILES		=	$(words $(SRCS))
-COMPILED_COUNT	=	0
 
 all:			$(NAME)
 
@@ -40,9 +37,7 @@ $(NAME):		$(OBJS)
 $(OBJ_DIR)%.o:	%.cpp
 				@mkdir -p $(dir $@)
 				@mkdir -p $(subst $(OBJ_DIR), $(DEP_DIR), $(dir $@))
-				@$(eval COMPILED_COUNT=$(shell echo $$(($(COMPILED_COUNT) + 1))))
-				@printf "\r$(YELLOW)[$(COMPILED_COUNT)/$(TOTAL_FILES)] Compiling $(NAME) files$(DEF_COLOR)"
-				@$(CC) $(COMP_FLAGS) $(CPP_FLAGS) $(DFLAGS) $(DEP_FILE) $(INC_PATHS) -c $< -o $@
+				$(CC) $(COMP_FLAGS) $(CPP_FLAGS) $(DFLAGS) $(DEP_FILE) $(INC_PATHS) -c $< -o $@
 
 clean:
 				@$(RM) $(OBJ_DIR) $(DEP_DIR)
@@ -54,3 +49,8 @@ fclean:			clean
 
 re:				fclean
 				@$(MAKE) all
+
+debug:			COMP_FLAGS += -g
+debug:			all
+
+.PHONY:			all clean fclean re debug
