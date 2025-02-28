@@ -30,13 +30,13 @@ all:			$(NAME)
 
 $(NAME):		$(OBJS)
 				@$(CC) $(COMP_FLAGS) $(CPP_FLAGS) $(OBJS) -o $@
-				@printf "$(CLEAR_LINE)"
 				@echo "\r$(GREEN)Successfully created executable: $(NAME) $(DEF_COLOR)"
 
-$(OBJ_DIR)%.o:	%.cpp
+$(OBJ_DIR)%.o:	$(SRC_DIR)%.cpp
 				@mkdir -p $(dir $@)
 				@mkdir -p $(subst $(OBJ_DIR), $(DEP_DIR), $(dir $@))
-				$(CC) $(COMP_FLAGS) $(CPP_FLAGS) $(DFLAGS) $(DEPS) $(INC_PATHS) -c $< -o $@
+				@$(eval DEP_FILE=$(subst $(OBJ_DIR), $(DEP_DIR), $(basename $@)).d)
+				@$(CC) $(COMP_FLAGS) $(CPP_FLAGS) $(DFLAGS) $(DEP_FILE) $(INC_PATHS) -c $< -o $@
 
 clean:
 				@$(RM) $(OBJ_DIR) $(DEP_DIR)
