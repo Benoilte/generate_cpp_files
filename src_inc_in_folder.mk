@@ -18,7 +18,6 @@ CC				=	c++
 COMP_FLAGS		=	-Wall -Wextra -Werror
 CPP_FLAGS		=	-std=c++98
 DFLAGS			:=	-MMD -MF
-DEP_FILE		=	$(DEP_DIR)$*.d
 RM				:=	rm -rf
 
 DEF_COLOR		=	\033[0;39m
@@ -39,7 +38,7 @@ $(NAME):		$(OBJS)
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.cpp
 				@mkdir -p $(dir $@)
 				@mkdir -p $(subst $(OBJ_DIR), $(DEP_DIR), $(dir $@))
-				@$(CC) $(COMP_FLAGS) $(CPP_FLAGS) $(DFLAGS) $(DEP_FILE) $(INC_PATHS) $(INC_PATHS) -c $< -o $@
+				@$(CC) $(COMP_FLAGS) $(CPP_FLAGS) $(DFLAGS) $(DEPS) $(INC_PATHS) $(INC_PATHS) -c $< -o $@
 
 clean:
 				@$(RM) $(OBJ_DIR) $(DEP_DIR)
