@@ -18,8 +18,8 @@ class Template
 		// CONSTRUCTOR //
 
 		Template();
-		Template(int const t_n);
-		Template(const Template &t_src);
+		Template(int const n);
+		Template(const Template &src);
 
 		// DESTRUCTOR //
 
@@ -27,7 +27,7 @@ class Template
 
 		// OPERATOR OVERLOAD //
 
-		Template	&operator=(const Template &t_rhs);
+		Template	&operator=(const Template &rhs);
 
 		// GETTER //
 
@@ -39,6 +39,6 @@ class Template
 
 };
 
-std::ostream	&operator<<(std::ostream &t_out, Template const &t_rhs);
+std::ostream	&operator<<(std::ostream &out, Template const &rhs);
 
 #endif
